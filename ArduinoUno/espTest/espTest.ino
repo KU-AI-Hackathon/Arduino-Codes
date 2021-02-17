@@ -4,7 +4,7 @@
 //SoftwareSerial(RX, TX)
 //RX(D2): ESP8266의 TX 연결
 //TX(D3): ESP8266의 RX 연결
-SoftwareSerial esp8266Serial = SoftwareSerial(2, 3); // RX TX
+SoftwareSerial esp8266Serial = SoftwareSerial(10,11); // RX TX
 ESP8266 wifi = ESP8266(esp8266Serial);
  
 #define SSID "KT_GiGA_2G_Wave2_9EBD" // SSid
@@ -13,8 +13,8 @@ ESP8266 wifi = ESP8266(esp8266Serial);
  
 void setup()
 {
-  Serial.begin(9600);
   esp8266Serial.begin(9600);  // ESP8266
+  Serial.begin(9600);
 
   if(esp8266Serial.isListening())
     Serial.println("esp8266Serial Listening");
@@ -66,7 +66,7 @@ void setup()
   /****************************************/
   // connect with webserver 
   Serial.print("connect: ");
-  Serial.println(getStatus(wifi.connect(ESP8266_PROTOCOL_TCP, IPAddress(10, 15, 0, 136), 3000)));
+  Serial.println(getStatus(wifi.connect(ESP8266_PROTOCOL_TCP, IPAddress(172, 30, 1, 30), 4000)));
   getConnectionStatue(wifi);
  
   // send to webserver
