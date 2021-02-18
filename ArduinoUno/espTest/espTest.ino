@@ -7,9 +7,9 @@
 SoftwareSerial esp8266Serial = SoftwareSerial(10,11); // RX TX
 ESP8266 wifi = ESP8266(esp8266Serial);
  
-#define SSID "KT_GiGA_2G_Wave2_9EBD" // SSid
-#define PWD "6bg90dk422" // SSid pw
-#define IP "172.30.1.30:4000" // 접근할 웹 서버 IP
+#define SSID "ku-ai-hub-hotspot" // SSid
+#define PWD "12345678" // SSid pw
+#define IP "192.168.43.222:4000" // 접근할 웹 서버 IP
  
 void setup()
 {
