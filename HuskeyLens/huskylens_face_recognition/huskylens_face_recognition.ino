@@ -1,14 +1,16 @@
 #include "HUSKYLENS.h"
 #include "SoftwareSerial.h"
 
+int sensor = 13;  //솔레노이드 13번 핀
 HUSKYLENS huskylens;
 
 void printResult(HUSKYLENSResult result);
 
 void setup(){
   Serial.begin(9600);
-
+  pinMode (sensor,OUTPUT);
   Wire.begin();
+  
   while(!huskylens.begin(Wire))
   {
     Serial.println(F("Begin failed!"));
@@ -39,10 +41,27 @@ void loop(){
 void printResult(HUSKYLENSResult result){
   if (result.command == COMMAND_RETURN_BLOCK){
     Serial.println(String()+F(",ID")+result.ID);
+    if(result.ID == 1){
+        digitalWrite (sensor, 0); //닫힘
+        delay(1000);
+    }
+    else if(result.ID == 2){
+        digitalWrite (sensor, 1); //열림
+        delay(4000);
+        digitalWrite (sensor, 0); //닫힘
+    }
     delay(1000); 
   }
   else if (result.command == COMMAND_RETURN_ARROW){
     Serial.println(String()+F(",ID")+result.ID);
+    if(result.ID == 1){
+        digitalWrite (sensor, 0); //닫힘
+    }
+    else if(result.ID == 2){
+        digitalWrite (sensor, 1); //열림
+        delay(4000);
+        digitalWrite (sensor, 0); //닫힘
+    }
     delay(1000); 
   }
   else{
